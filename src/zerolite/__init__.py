@@ -1,15 +1,10 @@
 #!/usr/bin/env python3
-
-from importlib import resources
-try:
-    import tomllib
-except ModuleNotFoundError:
-    import tomli as tomllib
+import globalval
 
 # Package constants
-__name__ = 'zerolite'
-__version__ = '0.0.1'
-__description__ = "Chess neural network based on Alpha Zero's algorithm"
-__url__ = 'https://github.com/git-akihakune/AlphaZeroLite'
-__author__ = 'Aki Hakune'
-__license__ = 'MIT'
+__name__ = globalval.name
+__version__ = globalval.version
+__description__ = globalval.description
+__url__ = globalval.url
+__author__ = globalval.author
+__license__ = globalval.license
