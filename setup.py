@@ -12,7 +12,8 @@ setup(
     packages=['zerolite'],
     install_requires=[
         'torch>=1.13.1',
-        'python-chess'
+        'python-chess',
+        'docopt'
     ],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
