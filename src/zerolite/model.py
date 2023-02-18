@@ -1,23 +1,33 @@
 #!/usr/bin/env python3
 import torch
 from torch import nn
+from zerolite import globalval
 
 def device() -> str:
     return "cuda" if torch.cuda.is_available() else "cpu"
-
-class SimplifiedChessNetwork(nn.Module):
-    def __init__(self):
-        super(SimplifiedChessNetwork, self).__init__()
-        self.flatten = nn.Flatten()
-        self.linearReluStack = nn.Sequential(
-            nn.Linear(8*8, 512),
-            nn.ReLU(),
-            nn.Linear(512, 512),
-            nn.ReLU(),
-            nn.Linear(512, 64),
-        )
     
-    def forward(self, x):
-        x = self.flatten(x)
-        logits = self.linearReluStack(x)
-        return logits
+class ZeroLiteNetwork(nn.Module):
+    def __init__(self):
+        super(ZeroLiteNetwork, self).__init__()
+        self.stack = nn.Sequential(
+            nn.Conv2d(
+                in_channels=globalval.differentPiecesEachSide * 2,
+                out_channels=globalval.differentPiecesEachSide * 2,
+                kernel_size=3
+            ),
+            nn.ReLU(),
+            nn.Conv2d(
+                in_channels=globalval.differentPiecesEachSide * 2,
+                out_channels=globalval.differentPiecesEachSide * 2,
+                kernel_size=3
+            ),
+            nn.ReLU(),
+            nn.Conv2d(
+                in_channels=globalval.differentPiecesEachSide * 2,
+                out_channels=globalval.differentPiecesEachSide,
+                kernal_size=3
+            )
+        )
+
+    def forward(self, param):
+        return self.stack(param)
