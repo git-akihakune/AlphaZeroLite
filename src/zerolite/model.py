@@ -8,7 +8,7 @@ def device() -> str:
     return "cuda" if torch.cuda.is_available() else "cpu"
 
 class Randomizer():
-    def predict(self, board):
+    def move(self, board):
         return str(random.choice([move for move in board.legal_moves]))
     
 class ZeroLiteNetwork(nn.Module):
