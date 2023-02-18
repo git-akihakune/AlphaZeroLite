@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 import torch
 from torch import nn
-from zerolite import globalval
+import globalval
+import random
 
 def device() -> str:
     return "cuda" if torch.cuda.is_available() else "cpu"
+
+class Randomizer():
+    def predict(self, board):
+        return str(random.choice([move for move in board.legal_moves]))
     
 class ZeroLiteNetwork(nn.Module):
     def __init__(self):

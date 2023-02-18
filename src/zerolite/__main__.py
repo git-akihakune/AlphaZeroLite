@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 from arguments import arguments
 import model
+import interface
 
 def train():
-    ZeroLiteModel = model.SimplifiedChessNetwork().to(model.device())
+    ZeroLiteModel = model.ZeroLiteNetwork().to(model.device())
     print(ZeroLiteModel)
 
 def play():
-    pass
+    opponent = model.Randomizer()
+    simulation = interface.Simulation()
+    simulation.play('white', opponent)
 
 def main():
     if arguments['train']: train()
