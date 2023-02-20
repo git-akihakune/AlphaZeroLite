@@ -8,7 +8,9 @@ def train():
     print(ZeroLiteModel)
 
 def play():
-    firstPlayer, secondPlayer = [simulation.Human(), model.Randomizer()]
+    if arguments['--test']: firstPlayer, secondPlayer = [simulation.Human()] * 2
+    elif arguments['--black']: firstPlayer, secondPlayer = [model.Randomizer(), simulation.Human()]
+    else: firstPlayer, secondPlayer = [simulation.Human(), model.Randomizer()]
     game = simulation.Simulator()
     game.play(firstPlayer, secondPlayer)
 
