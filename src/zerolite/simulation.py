@@ -23,3 +23,7 @@ class Simulator():
             else: self.board.push_san(secondPlayer.move(self.board))
             numberOfMove += 1
             print() # Separate previous and current move
+        if self.board.outcome().termination.CHECKMATE:
+            print(f"Game ended. {'White' if self.board.outcome().winner else 'Black'} won.")
+        else:
+            print(f"Game ended.")
