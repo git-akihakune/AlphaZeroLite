@@ -13,8 +13,9 @@ For bleeding-edge installation, first clone this repo:
 git clone https://github.com/git-akihakune/AlphaZeroLite.git
 ```
 
-Then get into the `src` directory:
+Then download the dependencies and get into the `src` directory:
 ```bash
+pip install -R requirements.txt
 cd src
 ```
 
