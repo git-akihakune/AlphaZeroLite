@@ -6,7 +6,7 @@ This repository was only made for learning and demonstrating purposes. Therefore
 
 ## Installation
 ### For end-user
-This module will be developed to be compatible as a `pip` module. In this current phase, 
+This module will be developed to be compatible as a `pip` module, or can be installed by wheel file. In this current development phase, no end-user installation method is provided.
 ### For developer
 For bleeding-edge installation, first clone this repo:
 ```bash
