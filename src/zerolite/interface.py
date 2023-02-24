@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import model
 import chess
+import globalvar
 
 
 class Human():
@@ -16,7 +17,63 @@ class Human():
 
 def UCI():
     def __init__(self):
+        try:
+            from threading import Thread
+            self.debug = False
+            self.setup = False
+            self.name = f"{globalvar.name} {globalvar.version}"
+        except:
+            print("registration error")
+
+    def receiveCommand(self):
+        while True:
+            self._handleCommand(input())
+
+    def _handleCommand(self, command:str) -> str:
+        """Process commands according to UCI standard"""
+        options = command.split()[1:]
+        command = command.split()[0]
+
+        if command == "uci":
+            self._id()
+        elif command == "debug":
+            self.debug = True if options[0] == "on" else False
+        elif command == "isready":
+            self._isReady()
+        elif command == "setoption":
+            self._setOption(options)
+        elif command == "register":
+            self._register(options)
+            
+    def internalSetup(self):
+        self.board = chess.Board()
+        self.setup = True
+
+    def calculate():
         pass
+
+    def _id(self):
+        print(f"id name {self.name}")
+        print(f"id author {globalvar.author}")
+
+    def _isReady(self):
+        if not self.setup: self.internalSetup()
+        print("readyok")
+
+    def _setOption(self, options):
+        name = options[1]
+        value = options[3]
+        setattr(self, name, value)
+
+    def _register(self, options):
+        if options[0] == "name":
+            self.name = options[1:].join(' ')
+        elif options[0] == "code":
+            self.code = options[1]
+        else: pass
+
+    def play(self):
+        Thread(target=receiveCommand(self)).start()
 
 
 class TUI():
