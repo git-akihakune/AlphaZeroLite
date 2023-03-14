@@ -19,6 +19,6 @@ Options:
     -V --version    Show version.
 """
 from docopt import docopt
-import globalval
+from zerolite import globalval
 
 arguments = docopt(__doc__, version=f"ZeroLite {globalval.version}")

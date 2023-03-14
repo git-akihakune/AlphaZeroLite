@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from setuptools import setup
-from src import zerolite
+import zerolite
 
 setup(
     name=zerolite.__name__,

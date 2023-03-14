@@ -2,7 +2,7 @@
 tasks:
   - name: Environment set up
     init: pip install -U pip
-    command: pip install . && pip install .[dev]
+    command: pip install -r requirements.txt
 vscode:
   extensions:
     - ms-python.isort

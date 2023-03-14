@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import torch
 from torch import nn
-import globalval
+from zerolite import globalval
 import random
 
 def device() -> str:

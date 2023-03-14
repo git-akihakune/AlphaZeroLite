@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import model
 import chess
-import globalvar
+from zerolite import globalval
 
 
 class Human():
