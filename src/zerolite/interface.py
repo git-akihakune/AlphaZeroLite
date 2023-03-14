@@ -15,19 +15,20 @@ class Human():
         return move
 
 
-def UCI():
+class UCI:
     def __init__(self):
         try:
-            from threading import Thread
+            import threading
+            self.board = None
+            self.move = None
+            self.quit = False
             self.debug = False
             self.setup = False
             self.name = f"{globalvar.name} {globalvar.version}"
+            self.thread = threading.Thread(target=self.play)
+            self.lock = threading.Lock()
         except:
             print("registration error")
-
-    def receiveCommand(self):
-        while True:
-            self._handleCommand(input())
 
     def _handleCommand(self, command:str) -> str:
         """Process commands according to UCI standard"""
@@ -44,12 +45,16 @@ def UCI():
             self._setOption(options)
         elif command == "register":
             self._register(options)
+        elif command == "ucinewgame":
+            self.board = chess.Board()
+        elif command == "position":
+            self._setPosition(options)
             
     def internalSetup(self):
         self.board = chess.Board()
         self.setup = True
 
-    def calculate():
+    def calculate() -> chess.Move():
         pass
 
     def _id(self):
@@ -72,11 +77,15 @@ def UCI():
             self.code = options[1]
         else: pass
 
+    def _setPosition(self, options):
+        
+
     def play(self):
-        Thread(target=receiveCommand(self)).start()
+        while not self.quit:
+            self._handleCommand(input())
 
 
-class TUI():
+class TUI:
     def __init__(self) -> None:
         self.board = chess.Board()
         self._printBanner()
